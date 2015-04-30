@@ -70,7 +70,10 @@ function arrangeApps(...)
   end
 end
 
--- Swap
+-- My programming layout
+-- Hyper+J brings up Emacs in center view (Chrome to right).
+-- Hyper+U brings up Chrome in center view (Emacs to right)
+-- Hyper+K brings up iTerm in center view (Emacs bottom, Chrome right)
 hs.hotkey.bind(
   softhyper, "J", function()
     arrangeApps(
@@ -92,29 +95,6 @@ hs.hotkey.bind(
       {"Emacs", bottomCenterRect},
       {"Google Chrome", rightRect})
 end)
-
-
-
-function swapApp(app1, app2)
-    local win1 = hs.appfinder.appFromName(app1):mainWindow()
-    local win2 = hs.appfinder.appFromName(app2):mainWindow()
-    local frame1 = win1:frame()
-    local frame2 = win2:frame()
-
-    win1:setFrame(frame2)
-    win2:setFrame(frame1)
-end
-
-hs.hotkey.bind(hyper, "R", function()
-  hs.reload()
-  hs.alert.show("Config loaded")
-end)
-
-hs.hints.style = "vimperator"
-hs.hotkey.bind({"cmd"}, "K", function()
-    hs.hints.windowHints()
-end)
-
 
 -- Automatically reload config
 function reload_config(files)
