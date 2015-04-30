@@ -44,13 +44,19 @@ bottomRightRect = hs.geometry.rect(eyeline + eyewidth, 0.5, 1 - (eyeline + eyewi
 bottomCenterRect = hs.geometry.rect(eyeline, 0.5, eyewidth, 0.5)
 topCenterRect = hs.geometry.rect(eyeline, 0.0, eyewidth, 0.5)
 
--- FIXME: Chrome canary is not being recognized. 
+lcdCenterRect = hs.geometry.rect(0.1, 0.0, 0.8, 1.0)
+lcdCenterRect2 = hs.geometry.rect(0.0, 0.1, 1.0, 0.8)
+
 local asusScreen = "ASUS PB278"
+local lcdScreen = "Color LCD"
 local windowLayout = {
   {"Emacs", nil, asusScreen, centerRect, nil, nil},
   {"iTerm", nil, asusScreen, bottomRightRect, nil, nil},
-  {"Google Chrome Canary", nil, asusScreen, leftRect, nil, nil},
-  {"Google Chrome", nil, asusScreen, rightRect, nil, nil}
+  {"Google Chrome", nil, asusScreen, rightRect, nil, nil},
+  {"MacDown", nil, lcdScreen, lcdCenterRect, nil, nil},
+  {"GitHub", nil, lcdScreen, lcdCenterRect2, nil, nil},
+  -- FIXME: Chrome canary is not being recognized. 
+  {"Google Chrome Canary", nil, asusScreen, leftRect, nil, nil}
 }
 hs.hotkey.bind(hyper, "Y", function()
     hs.layout.apply(windowLayout)
@@ -94,6 +100,10 @@ hs.hotkey.bind(
       {"iTerm", topCenterRect},
       {"Emacs", bottomCenterRect},
       {"Google Chrome", rightRect})
+end)
+hs.hotkey.bind(
+  softhyper, "H", function()
+    arrangeApps({"MacDown", lcdCenterRect})
 end)
 
 -- Automatically reload config
