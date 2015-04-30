@@ -39,7 +39,7 @@ eyeline = 0.26
 eyewidth = 0.38
 centerRect = hs.geometry.rect(eyeline, 0.0, eyewidth, 1.0)
 leftRect = hs.geometry.rect(0.0, 0.0, eyeline, 1.0)
-rightRect = hs.geometry.rect(eyeline + eyewidth, 0.0, 1 - (eyeline + eyewidth), 1.0)
+rightRect = hs.geometry.rect(eyeline + eyewidth, 0.0, 1 - (eyeline + eyewidth), 0.9)
 bottomRightRect = hs.geometry.rect(eyeline + eyewidth, 0.5, 1 - (eyeline + eyewidth), 0.5)
 bottomCenterRect = hs.geometry.rect(eyeline, 0.5, eyewidth, 0.5)
 topCenterRect = hs.geometry.rect(eyeline, 0.0, eyewidth, 0.5)
@@ -56,18 +56,18 @@ hs.hotkey.bind(hyper, "Y", function()
     hs.layout.apply(windowLayout)
 end)
 
-hs.window.animationDuration=0
 function arrangeApps(...)
   local arg={...}
   local hsLayout = {}
   for i, v in ipairs(arg) do
     name = v[1]
     rect = v[2]
-    table.insert(hsLayout, {name, nil, asusScreen, rect, nil, nil})
+    appWin = hs.appfinder.appFromName(name):mainWindow()
+    appWin:moveToUnit(rect, 0)
+    if i == 1 then
+      appWin:focus()
+    end
   end
-  hs.layout.apply(hsLayout)
-  -- Now focus the first window
-  hs.appfinder.appFromName(arg[1][1]):mainWindow():focus()
 end
 
 -- Swap
@@ -120,6 +120,5 @@ end)
 function reload_config(files)
     hs.reload()
 end
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reload_config):start()
+hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/init.lua", reload_config):start()
 hs.alert.show("Config loaded")
-
