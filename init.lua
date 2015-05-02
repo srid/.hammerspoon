@@ -75,6 +75,11 @@ function arrangeApps(...)
   end
 end
 
+function focusApp(appName)
+  appWin = hs.appfinder.appFromName(appName):mainWindow()
+  appWin:focus()
+end
+
 -- My programming layout
 -- Hyper+J brings up Emacs in center view (Chrome to right).
 -- Hyper+U brings up Chrome in center view (Emacs to right)
@@ -93,8 +98,9 @@ hs.hotkey.bind(
       {"Emacs", rightRect},
       {"iTerm", bottomRightRect})
 end)
+hs.hotkey.bind(softhyper, "K", function() focusApp("iTerm") end)
 hs.hotkey.bind(
-  softhyper, "K", function()
+  hyper, "K", function()
     arrangeApps(
       {"iTerm", topCenterRect},
       {"Emacs", bottomCenterRect},
