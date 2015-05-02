@@ -55,8 +55,7 @@ local windowLayout = {
   {"Google Chrome", nil, asusScreen, rightRect, nil, nil},
   {"MacDown", nil, lcdScreen, lcdCenterRect, nil, nil},
   {"GitHub", nil, lcdScreen, lcdCenterRect2, nil, nil},
-  -- FIXME: Chrome canary is not being recognized. 
-  {"Google Chrome Canary", nil, asusScreen, leftRect, nil, nil}
+  {"Safari", nil, asusScreen, leftRect, nil, nil}
 }
 hs.hotkey.bind(hyper, "Y", function()
     hs.layout.apply(windowLayout)
