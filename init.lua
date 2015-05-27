@@ -50,7 +50,7 @@ lcdCenterRect2 = hs.geometry.rect(0.0, 0.1, 1.0, 0.8)
 local asusScreen = "ASUS PB278"
 local lcdScreen = "Color LCD"
 local windowLayout = {
-  {"Emacs", nil, asusScreen, centerRect, nil, nil},
+  {"Atom", nil, asusScreen, centerRect, nil, nil},
   {"iTerm", nil, asusScreen, bottomRightRect, nil, nil},
   {"Google Chrome", nil, asusScreen, rightRect, nil, nil},
   {"MacDown", nil, lcdScreen, lcdCenterRect, nil, nil},
@@ -87,7 +87,7 @@ end
 hs.hotkey.bind(
   softhyper, "J", function()
     arrangeApps(
-      {"Emacs", centerRect},
+      {"Atom", centerRect},
       {"Google Chrome", rightRect},
       {"iTerm", bottomRightRect})
 end)
@@ -95,7 +95,7 @@ hs.hotkey.bind(
   softhyper, "U", function()
     arrangeApps(
       {"Google Chrome", centerRect},
-      {"Emacs", rightRect},
+      {"Atom", rightRect},
       {"iTerm", bottomRightRect})
 end)
 hs.hotkey.bind(softhyper, "K", function() focusApp("iTerm") end)
@@ -103,7 +103,7 @@ hs.hotkey.bind(
   hyper, "K", function()
     arrangeApps(
       {"iTerm", topCenterRect},
-      {"Emacs", bottomCenterRect},
+      {"Atom", bottomCenterRect},
       {"Google Chrome", rightRect})
 end)
 hs.hotkey.bind(
