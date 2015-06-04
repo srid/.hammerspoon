@@ -39,7 +39,7 @@ eyeline = 0.26
 eyewidth = 0.38
 centerRect = hs.geometry.rect(eyeline, 0.0, eyewidth, 1.0)
 leftRect = hs.geometry.rect(0.0, 0.0, eyeline, 1.0)
-rightRect = hs.geometry.rect(eyeline + eyewidth, 0.0, 1 - (eyeline + eyewidth), 0.9)
+rightRect = hs.geometry.rect(eyeline + eyewidth, 0.0, 1 - (eyeline + eyewidth), 1.0)
 bottomRightRect = hs.geometry.rect(eyeline + eyewidth, 0.5, 1 - (eyeline + eyewidth), 0.5)
 bottomCenterRect = hs.geometry.rect(eyeline, 0.5, eyewidth, 0.5)
 topCenterRect = hs.geometry.rect(eyeline, 0.0, eyewidth, 0.5)
@@ -52,8 +52,9 @@ local editor = "Emacs"
 local asusScreen = "ASUS PB278"
 local lcdScreen = "Color LCD"
 local windowLayout = {
-  {editor, nil, asusScreen, centerRect, nil, nil},
-  {"iTerm", nil, asusScreen, bottomRightRect, nil, nil},
+  -- {editor, nil, asusScreen, centerRect, nil, nil},
+  {"iTerm", nil, asusScreen, centerRect, nil, nil},
+  -- {"iTerm", nil, asusScreen, bottomRightRect, nil, nil},
   {"Google Chrome", nil, asusScreen, rightRect, nil, nil},
   {"MacDown", nil, lcdScreen, lcdCenterRect, nil, nil},
   {"GitHub", nil, lcdScreen, lcdCenterRect2, nil, nil},
@@ -83,35 +84,25 @@ function focusApp(appName)
 end
 
 -- My programming layout
--- Hyper+J brings up Emacs in center view (Chrome to right).
--- Hyper+U brings up Chrome in center view (Emacs to right)
+-- Hyper+J brings up Chrome in center view (Emacs to right)
 -- Hyper+K brings up iTerm in center view (Emacs bottom, Chrome right)
 hs.hotkey.bind(
   softhyper, "J", function()
     arrangeApps(
-      {editor, centerRect},
-      {"Google Chrome", rightRect},
-      {"iTerm", bottomRightRect})
-end)
-hs.hotkey.bind(
-  softhyper, "U", function()
-    arrangeApps(
       {"Google Chrome", centerRect},
-      {editor, rightRect},
-      {"iTerm", bottomRightRect})
+      {"iTerm", rightRect})
 end)
-hs.hotkey.bind(softhyper, "K", function() focusApp("iTerm") end)
 hs.hotkey.bind(
-  hyper, "K", function()
+  softhyper, "K", function()
     arrangeApps(
-      {"iTerm", topCenterRect},
-      {editor, bottomCenterRect},
+      {"iTerm", centerRect},
       {"Google Chrome", rightRect})
 end)
 hs.hotkey.bind(
   softhyper, "H", function()
     arrangeApps({"MacDown", lcdCenterRect})
 end)
+
 
 -- Automatically reload config
 function reload_config(files)
