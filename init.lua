@@ -56,7 +56,7 @@ local windowLayout = {
   {"iTerm", nil, asusScreen, centerRect, nil, nil},
   -- {"iTerm", nil, asusScreen, bottomRightRect, nil, nil},
   {"Google Chrome", nil, asusScreen, rightRect, nil, nil},
-  {"MacDown", nil, lcdScreen, lcdCenterRect, nil, nil},
+  {"Microsoft OneNote", nil, lcdScreen, lcdCenterRect, nil, nil},
   {"GitHub", nil, lcdScreen, lcdCenterRect2, nil, nil},
   {"Safari", nil, asusScreen, leftRect, nil, nil}
 }
@@ -100,7 +100,7 @@ hs.hotkey.bind(
 end)
 hs.hotkey.bind(
   softhyper, "H", function()
-    arrangeApps({"MacDown", lcdCenterRect})
+    arrangeApps({"Microsoft OneNote", lcdCenterRect})
 end)
 
 
