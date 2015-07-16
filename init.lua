@@ -48,15 +48,17 @@ lcdCenterRect = hs.geometry.rect(0.1, 0.0, 0.8, 1.0)
 lcdCenterRect2 = hs.geometry.rect(0.0, 0.1, 1.0, 0.8)
 
 local editor = "Emacs"
+local notesApp = "Microsoft OneNote"
+local terminalApp = "Terminal"
 
 local asusScreen = "ASUS PB278"
 local lcdScreen = "Color LCD"
 local windowLayout = {
   -- {editor, nil, asusScreen, centerRect, nil, nil},
-  {"iTerm", nil, asusScreen, centerRect, nil, nil},
+  {terminalApp, nil, asusScreen, centerRect, nil, nil},
   -- {"iTerm", nil, asusScreen, bottomRightRect, nil, nil},
   {"Google Chrome", nil, asusScreen, rightRect, nil, nil},
-  {"Microsoft OneNote", nil, lcdScreen, lcdCenterRect, nil, nil},
+  {notesApp, nil, lcdScreen, lcdCenterRect, nil, nil},
   {"GitHub", nil, lcdScreen, lcdCenterRect2, nil, nil},
   {"Safari", nil, asusScreen, leftRect, nil, nil}
 }
@@ -90,17 +92,17 @@ hs.hotkey.bind(
   softhyper, "J", function()
     arrangeApps(
       {"Google Chrome", centerRect},
-      {"iTerm", rightRect})
+      {terminalApp, rightRect})
 end)
 hs.hotkey.bind(
   softhyper, "K", function()
     arrangeApps(
-      {"iTerm", centerRect},
+      {terminalApp, centerRect},
       {"Google Chrome", rightRect})
 end)
 hs.hotkey.bind(
   softhyper, "H", function()
-    arrangeApps({"Microsoft OneNote", lcdCenterRect})
+    arrangeApps({notesApp, lcdCenterRect})
 end)
 
 
